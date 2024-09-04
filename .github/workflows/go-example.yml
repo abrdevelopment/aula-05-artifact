@@ -1,14 +1,42 @@
 name: Go Example
-on: push
+env:
+  FILE_NAME: "hello-server"
+on:
+  push:
+    branches:
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      # Copy the code of repository and prepare to use on Ubuntu
       - name: Get Code
         uses: actions/checkout@v4
-      - name: Install Golang
-        uses: actions/setup-go@v5
+      
+      # Create a build of Go example on Ubuntu  
+      - name: Build ${{env.FILE_NAME}} for ubuntu-latest
+        run: go build ${{env.FILE_NAME}}.go
+
+      # Create a build of Go example on Windows  
+      - name: Build ${{env.FILE_NAME}} for Windows
+        run: GOOS=windows GOARCH=amd64 go build ${{env.FILE_NAME}}.go  
+      
+      # Upload the artifact for Linux
+      - name: Upload artifact for linux
+        uses: actions/upload-artifact@v4.4.0
         with:
-          go-version: 'stable'
-      - name: Run Example
-        run: go run hello-server.go
+          name: linux
+          path: ./${{ env.FILE_NAME }}
+      
+      # Upload the artifact for Windows    
+      - name: Upload artifact for windows
+        uses: actions/upload-artifact@v4.4.0
+        with:
+          name: windows
+          path: ./${{ env.FILE_NAME }}.exe 
+      #- name: Install Golang
+       # uses: actions/setup-go@v5
+        #with:
+          #go-version: 'stable'
+      #- name: Run Example
+        #run: go run hello-server.go
