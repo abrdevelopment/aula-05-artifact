@@ -11,4 +11,4 @@ jobs:
         with:
           go-version: 'stable'
       - name: Run Example
-        run: go run hellow-server.go
+        run: go run hello-server.go
