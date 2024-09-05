@@ -37,7 +37,7 @@ jobs:
       # Execute Run Script
       - name: download-and-run-linux
         run: |
-          bash pwd
+          pwd
           chmod +x ./run.sh
           ./run.sh
     
