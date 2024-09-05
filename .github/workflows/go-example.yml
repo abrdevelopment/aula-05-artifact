@@ -1,13 +1,13 @@
 name: Go Example
 env:
   FILE_NAME: "hello-server"
-on:
+on: 
   push:
     branches:
       - main
   workflow_dispatch:
   schedule:
-    - cron: 15 * * * 0,6
+    - cron: '15 * * * 0,6'
 jobs:
   exercicio-cicd:
     runs-on: ubuntu-latest
@@ -17,12 +17,12 @@ jobs:
         uses: actions/checkout@v4
       
       # Create a build of Go example on Ubuntu  
-      - name: Build ${{env.FILE_NAME}} for ubuntu-latest
-        run: go build ${{env.FILE_NAME}}.go
+      - name: Build ${{ env.FILE_NAME }} for ubuntu-latest
+        run: go build ${{ env.FILE_NAME }}.go
 
       # Create a build of Go example on Windows  
-      - name: Build ${{env.FILE_NAME}} for Windows
-        run: GOOS=windows GOARCH=amd64 go build ${{env.FILE_NAME}}.go  
+      - name: Build ${{ env.FILE_NAME }} for Windows
+        run: GOOS=windows GOARCH=amd64 go build ${{ env.FILE_NAME }}.go  
       
       # Upload the artifact for Linux
       - name: Upload artifact for linux
@@ -36,10 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4.4.0
         with:
           name: windows
-          path: ./${{ env.FILE_NAME }}.exe 
-      #- name: Install Golang
-       # uses: actions/setup-go@v5
-        #with:
-          #go-version: 'stable'
-      #- name: Run Example
-        #run: go run hello-server.go
+          path: ./${{ env.FILE_NAME }}.exe
