@@ -42,7 +42,10 @@ jobs:
     
   job2:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
+      # Copy the code of repository and prepare to use on Ubuntu
+      - name: Get Code
+        uses: actions/checkout@v4.1.7 
       # Create a build of Go example on Windows  
       - name: Build ${{ env.FILE_NAME }} for Windows
         run: GOOS=windows GOARCH=amd64 go build ${{ env.FILE_NAME }}.go  
