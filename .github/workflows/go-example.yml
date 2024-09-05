@@ -37,9 +37,9 @@ jobs:
       # Execute Run Script
       - name: download-and-run-linux
         run: |
-         chmod +x ./run.sh
-         mkdir ./linux
-         ./run.sh
+          echo pwd
+          chmod +x ./run.sh
+          ./run.sh
     
   job2:
     runs-on: ubuntu-latest
