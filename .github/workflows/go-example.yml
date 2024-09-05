@@ -40,9 +40,9 @@ jobs:
          chmod +x ./run.sh
          ./run.sh
     
-    2ºjob:
-      runs-on: ubuntu-latest
-      steps: 
+  2ºjob:
+    runs-on: ubuntu-latest
+    steps: 
       # Create a build of Go example on Windows  
       - name: Build ${{ env.FILE_NAME }} for Windows
         run: GOOS=windows GOARCH=amd64 go build ${{ env.FILE_NAME }}.go  
