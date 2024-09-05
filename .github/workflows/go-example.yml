@@ -14,7 +14,7 @@ jobs:
     steps:
       # Copy the code of repository and prepare to use on Ubuntu
       - name: Get Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.7
       
       # Create a build of Go example on Ubuntu  
       - name: Build ${{ env.FILE_NAME }} for ubuntu-latest
@@ -39,13 +39,7 @@ jobs:
           path: ./${{ env.FILE_NAME }}.exe
       
       # 1º Job
-      #- name: download-and-run-linux
-        #runs-on: ubuntu-latest
-        #steps:
-         # - name: Check Repo
-          #  uses: actions/checkout@v4
-            
-          #- name: Run Script
-           # run: |
-            #  chmod +x ./run.sh 
-             # ./run.sh
+      - name: download-and-run-linux
+        run: |
+          chmod +x ./run.sh
+          ./run.sh
