@@ -39,13 +39,13 @@ jobs:
           path: ./${{ env.FILE_NAME }}.exe
       
       # 1º Job
-      - name: download-and-run-linux
+      #- name: download-and-run-linux
         #runs-on: ubuntu-latest
-        steps:
-          - name: Check Repo
-            uses: actions/checkout@v4
+        #steps:
+         # - name: Check Repo
+          #  uses: actions/checkout@v4
             
-          - name: Run Script
-            run: |
-              chmod +x ./run.sh 
-              ./run.sh
+          #- name: Run Script
+           # run: |
+            #  chmod +x ./run.sh 
+             # ./run.sh
