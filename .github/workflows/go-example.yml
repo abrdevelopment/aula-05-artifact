@@ -9,7 +9,7 @@ on:
   schedule:
     - cron: '*/15 * * * 1-6'
 jobs:
-  exercicio-cicd:
+  1ºjob:
     runs-on: ubuntu-latest
     steps:
       # Copy the code of repository and prepare to use on Ubuntu
@@ -19,10 +19,6 @@ jobs:
       # Create a build of Go example on Ubuntu  
       - name: Build ${{ env.FILE_NAME }} for ubuntu-latest
         run: go build ${{ env.FILE_NAME }}.go
-
-      # Create a build of Go example on Windows  
-      - name: Build ${{ env.FILE_NAME }} for Windows
-        run: GOOS=windows GOARCH=amd64 go build ${{ env.FILE_NAME }}.go  
       
       # Upload the artifact for Linux
       - name: Upload artifact for linux
@@ -31,15 +27,37 @@ jobs:
           name: linux
           path: ./${{ env.FILE_NAME }}
       
+      # Download the artifact for Linux
+      - name: Download artifact for Linux
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: linux
+          path: ./${{ env.FILE_NAME }}
+
+      # Execute Run Script
+      - name: download-and-run-linux
+        run: |
+         chmod +x ./run.sh
+         ./run.sh
+    
+    2ºjob:
+      runs-on: ubuntu-latest
+      steps: 
+      # Create a build of Go example on Windows  
+      - name: Build ${{ env.FILE_NAME }} for Windows
+        run: GOOS=windows GOARCH=amd64 go build ${{ env.FILE_NAME }}.go  
+        
       # Upload the artifact for Windows    
       - name: Upload artifact for windows
         uses: actions/upload-artifact@v4.4.0
         with:
           name: windows
           path: ./${{ env.FILE_NAME }}.exe
+    
+    # Download the artifact for Windows
+      - name: Download artifact for Windows
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: windows
+          path: ./${{ env.FILE_NAME }}.exe
       
-      # 1º Job
-      - name: download-and-run-linux
-        run: |
-          chmod +x ./run.sh
-          ./run.sh
