@@ -7,7 +7,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '15 * * * 0,6'
+    - cron: '*/15 * * * 1-6'
 jobs:
   exercicio-cicd:
     runs-on: ubuntu-latest
@@ -37,3 +37,19 @@ jobs:
         with:
           name: windows
           path: ./${{ env.FILE_NAME }}.exe
+      
+      # 1º Job
+      - name: download-and-run-linux
+        on: [push]
+        jobs:
+          run-script:
+            runs-on: ubuntu-latest
+            
+            steps:
+            - name: Check Repo
+              uses: actions/checkout@v4
+            
+            - name: Run Script
+              run: |
+                chmod +x ../run.sh 
+                ../run.sh
