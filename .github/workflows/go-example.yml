@@ -38,6 +38,7 @@ jobs:
       - name: download-and-run-linux
         run: |
          chmod +x ./run.sh
+         mkdir linux
          ./run.sh
     
   job2:
