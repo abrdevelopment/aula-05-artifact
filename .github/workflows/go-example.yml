@@ -9,7 +9,7 @@ on:
   schedule:
     - cron: '*/15 * * * 1-6'
 jobs:
-  1ºjob:
+  job1:
     runs-on: ubuntu-latest
     steps:
       # Copy the code of repository and prepare to use on Ubuntu
@@ -40,7 +40,7 @@ jobs:
          chmod +x ./run.sh
          ./run.sh
     
-  2ºjob:
+  job2:
     runs-on: ubuntu-latest
     steps: 
       # Create a build of Go example on Windows  
