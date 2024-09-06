@@ -1,4 +1,4 @@
-chmod +x ./linux/hello-server
+chmod +x ./hello-server
 
 ./linux/hello-server &
 

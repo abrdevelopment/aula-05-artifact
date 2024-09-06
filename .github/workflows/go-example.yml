@@ -32,12 +32,11 @@ jobs:
         uses: actions/download-artifact@v4.1.8
         with:
           name: linux
-          path: ./artifacts
+          path: ./${{ env.FILE_NAME }}
 
       # Execute Run Script
       - name: download-and-run-linux
         run: |
-          pwd
           chmod +x ./run.sh
           ./run.sh
     
@@ -63,5 +62,5 @@ jobs:
         uses: actions/download-artifact@v4.1.8
         with:
           name: windows
-          path: ./artifacts
+          path: ./${{ env.FILE_NAME }}.exe
       
