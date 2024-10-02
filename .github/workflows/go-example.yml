@@ -6,8 +6,8 @@ on:
     branches:
       - main
   workflow_dispatch:
-  schedule:
-    - cron: '*/15 * * * 1-6'
+  #schedule:
+   # - cron: '*/15 * * * 1-6'
 jobs:
   job1:
     runs-on: ubuntu-latest
